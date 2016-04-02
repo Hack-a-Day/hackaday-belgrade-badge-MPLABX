@@ -48,6 +48,29 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "HaD_Badge.h"
 //#include "bh-badge-animate.h"
 
+// HIGH VECTOR
+
+//#pragma code high_vector=0x1800
+void interrupt_at_high_vector (void) @ 0x1800
+{
+    asm( "goto 0x1008" );
+}
+
+// LOW VECTOR
+
+//#pragma code low_vector=0x1806
+void interrupt_at_low_vector(void) @ 0x1806
+{
+    asm( "goto 0x1008" );
+}
+
+// CODE ENTRY POINT
+
+//#pragma code _entry_scn=0x180C
+
+
+// your code starts here
+
 uint8_t KeyUpPress;
 uint8_t KeyMiddlePress;
 uint8_t KeyLeftPress;
@@ -168,16 +191,16 @@ void POST(void) {
 /*
                          Main application
  */
-void main(void) {
+void main(void) @ 0x180C {
     // Initialize the device
-    SYSTEM_Initialize();
+    //SYSTEM_Initialize();
     
-    initDisplay();
-    initTime();
-    
+    //initDisplay();
+    //initTime();
+    Buffer[4] = 0xFF;
     
     //Self test
-    POST();
+    //POST();
     
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts
     // If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global and Peripheral Interrupts

@@ -41,6 +41,10 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define REMAPPED_APPLICATION_HIGH_ISR_VECTOR    0x1800	// not 0x1808 anymore
 #define REMAPPED_APPLICATION_LOW_ISR_VECTOR     0x1806	// not 0x1818 anymore
 
+// #org 0x1000, 0x1005 { _asm goto 0x1008 _endasm }   // remapped High Priority ISR
+// #org 0x1006, 0x100C { _asm goto 0x1008 _endasm }   // remapped Low Priority ISR
+
+
 volatile uint8_t KeyEdge    @ 0x00;     //KeyEdge 0 = set by kernel; //if key INT edge detected(user must reset)
 volatile uint8_t Rotor0     @ 0x01;     //Rotor0 Used for key INT debouncer(bit 0 = 0 if key pressed)
 volatile uint8_t Rotor1     @ 0x02;     //Rotor1 Used for key LEFT debouncer(bit 0 = 0 if key pressed)

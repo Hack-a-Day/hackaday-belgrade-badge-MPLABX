@@ -47,7 +47,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Configuration bits: selected in the GUI
 
 // CONFIG1L
-
+// CONFIG1L
 #pragma config CFGPLLEN = OFF    // PLL Enable Configuration bit->PLL Disabled (firmware controlled)
 #pragma config LS48MHZ = SYS24X4    // Low Speed USB mode with 48 MHz system clock->System clock at 24 MHz, USB clock divider is set to 4
 #pragma config CPUDIV = NOCLKDIV    // CPU System Clock Postscaler->CPU uses system clock (no divide)
@@ -112,10 +112,10 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 
 void SYSTEM_Initialize(void) {
-    /*
-    OSCILLATOR_Initialize();
-    PIN_MANAGER_Initialize();
-    */
+    
+    //OSCILLATOR_Initialize();
+    //PIN_MANAGER_Initialize();
+    
 }
 
 void OSCILLATOR_Initialize(void) {

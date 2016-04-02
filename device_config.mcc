@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration device="PIC18F24K50" mcc_version="v2.25.2">
+    <managers>
+        <manager generated="true" name="Pin Manager" reloadPin="manual">
+            <setting name="package" option="SSOP28"/>
+            <setting name="sorting" option="true"/>
+            <file checksum="678986838" modified="false" name="pin_manager.c" path="mcc_generated_files/pin_manager.c"/>
+            <file checksum="3121934512" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
+        </manager>
+        <manager generated="true" name="System" reloadPin="manual">
+            <initializer comment="" name="Initialize">
+                <setting name="SCS" option="INTOSC" register="OSCCON"/>
+                <setting name="IDLEN" option="disabled" register="OSCCON"/>
+                <setting name="IRCF" option="16MHz" register="OSCCON"/>
+                <setting name="INTSRC" option="INTRC_31_25KHz" register="OSCCON2"/>
+                <setting name="PLLEN" option="enabled" register="OSCCON2"/>
+                <setting name="PRISD" option="disabled" register="OSCCON2"/>
+                <setting name="SOSCGO" option="disabled" register="OSCCON2"/>
+                <setting name="SPLLMULT" option="4xPLL" register="OSCTUNE"/>
+                <setting name="TUN" option="0x0" register="OSCTUNE"/>
+                <additionalSetting name="pllMultiplier" option=""/>
+                <additionalSetting name="extclk" option="1.0 MHz"/>
+            </initializer>
+            <setting name="CFGPLLEN" option="OFF"/>
+            <setting name="LS48MHZ" option="SYS24X4"/>
+            <setting name="CPUDIV" option="NOCLKDIV"/>
+            <setting name="PLLSEL" option="PLL4X"/>
+            <setting name="FCMEN" option="OFF"/>
+            <setting name="FOSC" option="INTOSCIO"/>
+            <setting name="IESO" option="OFF"/>
+            <setting name="PCLKEN" option="ON"/>
+            <setting name="nPWRTEN" option="OFF"/>
+            <setting name="BOREN" option="SBORDIS"/>
+            <setting name="nLPBOR" option="OFF"/>
+            <setting name="BORV" option="190"/>
+            <setting name="WDTPS" option="32768"/>
+            <setting name="WDTEN" option="OFF"/>
+            <setting name="CCP2MX" option="RC1"/>
+            <setting name="MCLRE" option="ON"/>
+            <setting name="T3CMX" option="RC0"/>
+            <setting name="SDOMX" option="RB3"/>
+            <setting name="PBADEN" option="ON"/>
+            <setting name="XINST" option="OFF"/>
+            <setting name="LVP" option="OFF"/>
+            <setting name="STVREN" option="ON"/>
+            <setting name="ICPRT" option="OFF"/>
+            <setting name="DEBUG" option="OFF"/>
+            <setting name="CP0" option="OFF"/>
+            <setting name="CP1" option="OFF"/>
+            <setting name="CPB" option="OFF"/>
+            <setting name="CPD" option="OFF"/>
+            <setting name="WRT1" option="OFF"/>
+            <setting name="WRT0" option="OFF"/>
+            <setting name="WRTB" option="OFF"/>
+            <setting name="WRTC" option="OFF"/>
+            <setting name="WRTD" option="OFF"/>
+            <setting name="EBTR1" option="OFF"/>
+            <setting name="EBTR0" option="OFF"/>
+            <setting name="EBTRB" option="OFF"/>
+            <setting name="generateConfigBits" option="true"/>
+            <file checksum="2981659361" modified="false" name="mcc.c" path="mcc_generated_files/mcc.c"/>
+            <file checksum="2199651917" modified="false" name="mcc.h" path="mcc_generated_files/mcc.h"/>
+        </manager>
+    </managers>
+    <modules/>
+</configuration>

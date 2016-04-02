@@ -13,6 +13,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.c</itemPath>
+      <itemPath>HaD_Badge.h</itemPath>
+      <itemPath>bh-badge-animate.c</itemPath>
+      <itemPath>bh-badge-animate.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

@@ -3,12 +3,12 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>HaD_Badge</name>
-            <creation-uuid>f6bf512e-07bd-40b9-a2f6-15ba0b953fed</creation-uuid>
+            <name>scratchFinalBadge</name>
+            <creation-uuid>47eee1b5-585a-4a7b-b164-b85a42a38f63</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>
-            <header-extensions>h</header-extensions>
+            <header-extensions/>
             <asminc-extensions/>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>

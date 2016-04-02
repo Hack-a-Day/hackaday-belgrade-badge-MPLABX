@@ -137,7 +137,7 @@ volatile uint16_t MySerial  @ 0x18;     //MySerial(2 bytes) unit serial number c
 volatile uint16_t FSR0temp  @ 0x1A;     //FSR0temp(2 bytes) Temporary FSR0 during INT
 /*******************   0x1C...0x5FF User data RAM space ***********************/
 volatile uint8_t RXBuffer[256]  @ 0x600;//0x600...0x6FF RX Buffer, used by infrared port routine(bytes loaded here)
-extern volatile uint8_t Buffer[16]     @ 0x700;//0x700...0x70F Display buffer, upper row first, bit 7 = left column(user writes here)
+volatile uint8_t Buffer[16]     @ 0x700;//0x700...0x70F Display buffer, upper row first, bit 7 = left column(user writes here)
 volatile uint8_t AuxBuffer[16]  @ 0x710;//0x710...0x71F Aux buffer(not displayed by interrupt display refresh, used by user)
 volatile uint8_t Pause[16]      @ 0x720;//0x720...0x72F Pause display buffer(displayed only during pause)
 volatile uint32_t RNDseed   @ 0x730;    //0x730...0x733 RND seed *

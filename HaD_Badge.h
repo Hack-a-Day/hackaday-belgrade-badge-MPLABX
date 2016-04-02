@@ -38,19 +38,22 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 #include <stdint.h>
 
-volatile uint8_t Flag       @ 0x00;     //Flag 0 = set by kernel : Pause, clr by kernel : Run mode(read only)
-volatile uint8_t RXFlag     @ 0x01;     //RXFlag 0 = set : Enable auto RX to RAM 0x600...0x6FF and to EEprom
-volatile uint8_t KeyEdge    @ 0x02;     //KeyEdge 0 = set by kernel; //if key INT edge detected(user must reset)
-volatile uint8_t Brightness @ 0x03;     //Brightness Display ON PWM, user presets to 0...15 for dimming
-volatile uint8_t GPreg      @ 0x04;     //GPreg General purpose register, may be used by user
-volatile uint8_t BitMask    @ 0x05;     //BitMask 10000000...00000001, shift reg(CA) or 0...7 row count(CC)
-volatile uint8_t BitMask2   @ 0x06;     //BitMask2 11111110...01111111, shift reg used for anode scan
-volatile uint8_t T0period   @ 0x07;     //T0period Total Timer 0 period, may be modified to alter scan frequency
-volatile uint8_t Rotor0     @ 0x08;     //Rotor0 Used for key INT debouncer(bit 0 = 0 if key pressed)
-volatile uint8_t Rotor1     @ 0x09;     //Rotor1 Used for key LEFT debouncer(bit 0 = 0 if key pressed)
-volatile uint8_t Rotor2     @ 0x0A;     //Rotor2 Used for key UP debouncer(bit 0 = 0 if key pressed)
-volatile uint8_t Rotor3     @ 0x0B;     //Rotor3 Used for key DOWN debouncer(bit 0 = 0 if key pressed)
-volatile uint8_t Rotor4     @ 0x0C;     //Rotor4 Used for key RIGHT debouncer(bit 0 = 0 if key pressed)
+#define REMAPPED_APPLICATION_HIGH_ISR_VECTOR    0x1800	// not 0x1808 anymore
+#define REMAPPED_APPLICATION_LOW_ISR_VECTOR     0x1806	// not 0x1818 anymore
+
+volatile uint8_t KeyEdge    @ 0x00;     //KeyEdge 0 = set by kernel; //if key INT edge detected(user must reset)
+volatile uint8_t Rotor0     @ 0x01;     //Rotor0 Used for key INT debouncer(bit 0 = 0 if key pressed)
+volatile uint8_t Rotor1     @ 0x02;     //Rotor1 Used for key LEFT debouncer(bit 0 = 0 if key pressed)
+volatile uint8_t Rotor2     @ 0x03;     //Rotor2 Used for key UP debouncer(bit 0 = 0 if key pressed)
+volatile uint8_t Rotor3     @ 0x04;     //Rotor3 Used for key DOWN debouncer(bit 0 = 0 if key pressed)
+volatile uint8_t Rotor4     @ 0x05;     //Rotor4 Used for key RIGHT debouncer(bit 0 = 0 if key pressed)
+volatile uint8_t Flag       @ 0x06;     //Flag 0 = set by kernel : Pause, clr by kernel : Run mode(read only)
+volatile uint8_t RXFlag     @ 0x07;     //RXFlag 0 = set : Enable auto RX to RAM 0x600...0x6FF and to EEprom
+volatile uint8_t Brightness @ 0x08;     //Brightness Display ON PWM, user presets to 0...15 for dimming
+volatile uint8_t GPreg      @ 0x09;     //GPreg General purpose register, may be used by user
+volatile uint8_t BitMask    @ 0x0A;     //BitMask 10000000...00000001, shift reg(CA) or 0...7 row count(CC)
+volatile uint8_t BitMask2   @ 0x0B;     //BitMask2 11111110...01111111, shift reg used for anode scan
+volatile uint8_t T0period   @ 0x0C;     //T0period Total Timer 0 period, may be modified to alter scan frequency
 volatile uint8_t InnerInt   @ 0x0D;     //InnerInt Loop counter, used by interrupt routine
 volatile uint8_t OuterInt   @ 0x0E;     //OuterInt Loop counter, used by interrupt routine
 volatile uint8_t OuterPlusInt @ 0x0F;   //OuterPlusInt Loop counter, used by interrupt routine

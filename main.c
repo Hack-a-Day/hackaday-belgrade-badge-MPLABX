@@ -73,6 +73,12 @@ void initControl(void) {
 
 uint8_t getControl(void) {
     //Return last pressed button
+    uint8_t key_mask = KeyEdge;
+    if (key_mask & 1<<1) { KeyEdge = 0x00; return LEFT; }
+    if (key_mask & 1<<4) { KeyEdge = 0x00; return RIGHT; }
+    if (key_mask & 1<<2) { KeyEdge = 0x00; return UP; }
+    if (key_mask & 1<<3) { KeyEdge = 0x00; return DOWN; }
+    return 0;
 }
 
 void initTime(void) {
@@ -81,6 +87,7 @@ void initTime(void) {
 
 uint32_t getTime(void) {
     //Return milliseconds (upcounting)
+    
 }
 
 void controlDelayMs(uint16_t ms) {
@@ -104,11 +111,11 @@ int main(int argc, char** argv) @ 0x180C {
     /****End mandatory function calls*************************/
     
     /****Begin User Code**************************************/
-    for (uint8_t i=0; i<16; i++) {
-        Buffer[i] = 0xFF;
-        controlDelayMs(500);
-    }
-    while(1);
+    initDisplay();
+    initTime();
+    displayLatch();
+    
+    animateBadge();
     
     return (EXIT_SUCCESS);
 }

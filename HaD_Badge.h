@@ -18,14 +18,14 @@
 #define ON      1
 
 //Directions of travel
-#define UP      0
-#define DOWN    1
-#define LEFT    2
-#define RIGHT   3
+#define UP      2
+#define DOWN    3
+#define LEFT    1
+#define RIGHT   4
 //Miscellaneous
-#define ESCAPE  4
-#define NOINPUT 5
-#define BUTTON  6
+#define ESCAPE  5
+#define NOINPUT 6
+#define BUTTON  7
     
 /*---- Display Prototypes ----*/
 void initDisplay(void);             //Turn on display and set all LEDs off

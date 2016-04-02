@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=scratchFinalBadge.X
+PROJECTNAME=final2
 
 # Active Configuration
 DEFAULTCONF=default

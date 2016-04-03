@@ -104,7 +104,7 @@ void controlDelayMs(uint16_t ms) {
 /*
  * 
  */
-int main(int argc, char** argv) @ 0x180C {
+int main(int argc, char** argv) {
     /****Functions must be called to place code for kernel****/
     interrupt_at_high_vector();
     interrupt_at_low_vector();

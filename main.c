@@ -87,7 +87,7 @@ void initTime(void) {
 
 uint32_t getTime(void) {
     //Return milliseconds (upcounting)
-    
+    return 0;
 }
 
 void controlDelayMs(uint16_t ms) {
@@ -111,9 +111,13 @@ int main(int argc, char** argv) {
     /****End mandatory function calls*************************/
     
     /****Begin User Code**************************************/
+    controlDelayMs(1);  //Just to get around "never called" compiler warning
     initDisplay();
     initTime();
+    initControl();
+    displayClear();
     displayLatch();
+    getTime();
     
     animateBadge();
     

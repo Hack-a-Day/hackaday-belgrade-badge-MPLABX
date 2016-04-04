@@ -58,10 +58,14 @@ void animateBadge(void) {
     uint32_t lastTime = getTime();
 
     while(1) {
+        
+        //This shows how to use non-blocking getTime() function
         if (getTime() > lastTime+1000) {
             lastTime = getTime();
             Buffer[14] ^= 0xFF;
         }
+        
+        //This shows how to get user input
         switch (getControl()) {
             case (ESCAPE):
                 displayClose();

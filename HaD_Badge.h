@@ -43,6 +43,12 @@ uint8_t getControl(void);           //Return last pressed button
 void initTime(void);                //Initialize timekeeping hardware
 uint32_t getTime(void);             //Return milliseconds (upcounting)
 void controlDelayMs(uint16_t ms);   //Delay milliseconds (blocking)
+/*---- Bootloader Interrupt Vector Handling ---*/
+void fakeHighVect(void);
+void fakeLowVect(void);
+void initBootloaderInterruptHandling(void);
+void interrupt_at_high_vector(void);
+void interrupt_at_low_vector(void);
 
 /*---- Config bits must match what is used by bootloader/kernel ----*/
 // CONFIG1L

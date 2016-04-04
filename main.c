@@ -14,14 +14,37 @@ volatile uint16_t innerTick = 0;
 volatile uint32_t ticks = 0;
 
 /*****Begin Kernel Compliance Section: Do not edit this code*******************/
+void fakeHighVect(void) @ 0x1800 { interrupt_at_high_vector(); }
+void fakeLowVect(void) @ 0x1806 { interrupt_at_low_vector(); }
+
+void initBootloaderInterruptHandling(void) {
+    /***************************
+     * These two functions connect the bootloader/kernel interrupt vector
+     * handling to this C code. This is a hack. The only way I could figure
+     * out to get the high and low interrupt vectors to be at the exact
+     * addresses specified by the bootloader (0x1800 and 0x1806) was to place
+     * functions at those address. You must call those functions at least once
+     * or the compiler will not pull them in. That is the only purpose of this 
+     * init function.
+     *****************************/
+    fakeHighVect();
+    fakeLowVect();
+}
+
 void interrupt_at_high_vector(void)
 {
+    //NOTE: Timer0 and Timer2 are in use by the bootloader/kernel
+    
+    /***** User Code for high priority interrupts *****/
     if (TMR1IF) {
-        TMR1 = 0xFA24; //Prewind for 1 ms
-        ++ticks;        
-        TMR1IF = 0;
+        //Use Timer1 to generate ~1ms tick for getTime() function
+        TMR1 = 0xFA24;  //Prewind for 1 ms overflow (0xFFFF-(48MHz/4/8/1000)+1)
+        ++ticks;        //Increment time variable (~24 days to overflow)
+        TMR1IF = 0;     //Clear interrupt flag
     }
-    //Do add or edit code inside this function; needed for kernel compliance
+    /***** End User Code for high priority interrupts *****/
+    
+    //this ASM call must end the function (needed for kernel compliance)
     asm("goto 0x1008");
 }
 
@@ -30,17 +53,18 @@ void interrupt_at_high_vector(void)
 //#pragma code low_vector=0x1806
 void interrupt_at_low_vector(void)
 {   
-    //Do add or edit code inside this function; needed for kernel compliance
+    /***** User Code for low priority interrupts *****/
+    
+    /***** End User Code for low priority interrupts *****/
+    
+    //this ASM call must end the function (needed for kernel compliance)
     asm("goto 0x1008");
 }
-
-void fakeHighVect(void) @ 0x1800 { interrupt_at_high_vector(); }
-void fakeLowVect(void) @ 0x1806 { interrupt_at_low_vector(); }
 
 /*****End Kernel Compliance Section********************************************/
 
 /*****Software Emulator Compliance Functions***********************************/
-/*---- Display Prototypes ----*/
+/*---- Display Functions ----*/
 void initDisplay(void) {
     //Turn on display and set all LEDs off   
     /* Do Nothing -- Handled by kernel */
@@ -76,7 +100,7 @@ void displayLatch(void) {
 
 
 
-/*---- Control Prototypes ----*/
+/*---- Control Functions ----*/
 void initControl(void) {
     //Setup button input
     /* Do nothing, not used on hardware badge*/
@@ -121,14 +145,11 @@ void controlDelayMs(uint16_t ms) {
 /*****End Software Emulator Compliance*****************************************/
 
 /*
- * 
+ * For software emulator compliance main must call animateBadge()
  */
 int main(int argc, char** argv) {
     /****Functions must be called to place code for kernel****/
-    //interrupt_at_high_vector();
-    //interrupt_at_low_vector();
-    fakeHighVect();
-    fakeLowVect();
+    initBootloaderInterruptHandling();
     /****End mandatory function calls*************************/
     
     /****Begin User Code**************************************/

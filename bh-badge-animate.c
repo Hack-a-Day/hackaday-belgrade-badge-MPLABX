@@ -55,8 +55,13 @@ void animateBadge(void) {
 
     displayPixel(ballX, ballY, ON);
     displayLatch();
+    uint32_t lastTime = getTime();
 
     while(1) {
+        if (getTime() > lastTime+1000) {
+            lastTime = getTime();
+            Buffer[14] ^= 0xFF;
+        }
         switch (getControl()) {
             case (ESCAPE):
                 displayClose();

@@ -10,9 +10,17 @@
 #include "HaD_Badge.h"
 #include "bh-badge-animate.h"
 
+volatile uint16_t innerTick = 0;
+volatile uint32_t ticks = 0;
+
 /*****Begin Kernel Compliance Section: Do not edit this code*******************/
-void interrupt_at_high_vector(void) @ 0x1800
+void interrupt_at_high_vector(void)
 {
+    if (TMR1IF) {
+        TMR1 = 0xFA24; //Prewind for 1 ms
+        ++ticks;        
+        TMR1IF = 0;
+    }
     //Do add or edit code inside this function; needed for kernel compliance
     asm("goto 0x1008");
 }
@@ -20,11 +28,15 @@ void interrupt_at_high_vector(void) @ 0x1800
 // LOW VECTOR
 
 //#pragma code low_vector=0x1806
-void interrupt_at_low_vector(void) @ 0x1806
-{
+void interrupt_at_low_vector(void)
+{   
     //Do add or edit code inside this function; needed for kernel compliance
     asm("goto 0x1008");
 }
+
+void fakeHighVect(void) @ 0x1800 { interrupt_at_high_vector(); }
+void fakeLowVect(void) @ 0x1806 { interrupt_at_low_vector(); }
+
 /*****End Kernel Compliance Section********************************************/
 
 /*****Software Emulator Compliance Functions***********************************/
@@ -81,13 +93,20 @@ uint8_t getControl(void) {
     return 0;
 }
 
+
 void initTime(void) {
     //Initialize timekeeping hardware
+    T1CON = 0b00110001; // Fosc/4 1:8 Prescale
+    TMR1IP = 0;
+    TMR1IF = 0;
+    TMR1IE = 1;
+    PEIE = 1 ;
+    GIE = 1;
 }
 
 uint32_t getTime(void) {
     //Return milliseconds (upcounting)
-    return 0;
+    return ticks;
 }
 
 void controlDelayMs(uint16_t ms) {
@@ -106,8 +125,10 @@ void controlDelayMs(uint16_t ms) {
  */
 int main(int argc, char** argv) {
     /****Functions must be called to place code for kernel****/
-    interrupt_at_high_vector();
-    interrupt_at_low_vector();
+    //interrupt_at_high_vector();
+    //interrupt_at_low_vector();
+    fakeHighVect();
+    fakeLowVect();
     /****End mandatory function calls*************************/
     
     /****Begin User Code**************************************/

@@ -79,13 +79,15 @@ void displayClear(void) {
 
 void displayPixel(uint8_t x, uint8_t y, uint8_t state) {
     //Set LED to state (ON|OFF)
+    uint8_t mask = 1<<(7-x);
     if (state == ON) {
-        Buffer[y] |= 1<<(7-x);
+        Buffer[y] |= mask;
     }
     else {
-        Buffer[y] &= ~(1<<(7-x));
+        Buffer[y] &= ~(mask);
     }
 }
+
 void displayClose(void) {
     //Close the display (used for SDL2 emulator window)
     /* Do nothing, not used on hardware badge*/

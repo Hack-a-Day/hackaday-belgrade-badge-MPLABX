@@ -1,4 +1,4 @@
-# Hackaday Belgrade Badge C Framework
+
 
 This is a C framework built in MPLABX for the Hackaday | Belgrade conference badge
 
@@ -29,8 +29,7 @@ the badge you need to install the following:
     * __Linux__: Download hid_bootloader.tar.bz2 using the [link in the middle of this page](http://elco.crsndoo.com/wordpress/2011/03/microchip-hid-bootloader-from-linux/)
         * Inside the build/ folder of that archive use:  ```./hid_bootloader /path/to/your.hex```
         
-    * __OSX__: Untested. If anyone knows how to do this let me know (mike at hackaday) and I'll update this readme.
-
+    * __OSX__: Untested. [Download this app from Microchip](https://www.dropbox.com/s/awoebbgdmmo1w4v/HIDBootloader.app.zip?dl=0)
 
 ## Bootloader/Kernel
 

@@ -31,6 +31,10 @@ the badge you need to install the following:
         
     * __OSX__: Untested. [Download this app from Microchip](https://www.dropbox.com/s/awoebbgdmmo1w4v/HIDBootloader.app.zip?dl=0)
 
+Of course, don't forget to clone this repostiory:
+
+```git clone https://github.com/Hack-a-Day/hackaday-belgrade-badge-MPLABX.git```
+
 ## Bootloader/Kernel
 
 There are different hardware revisions of the Hackaday | Belgrade conference badge.
